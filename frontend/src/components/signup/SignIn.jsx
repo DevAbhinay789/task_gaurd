@@ -10,21 +10,26 @@ import { authActions } from "../../store";
 const SignIn = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
+
   const [Inputs, setInputs] = useState({
     email: "",
     password: "",
   });
+
   const change = (e) => {
     const { name, value } = e.target;
     setInputs({ ...Inputs, [name]: value });
   };
+
   const submit = async (e) => {
-    e.preventDefault();
+     e.preventDefault();
     try {
+     // console.log("At 24")
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/v1/signin`,
         Inputs
       );
+     // console.log("AT 29")
       console.log(response.data);
       if (response.data) {
         sessionStorage.setItem("id", response.data.user._id);

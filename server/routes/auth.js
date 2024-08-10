@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+
 //SIGN UP
 // SIGN UP
 router.post('/register', async (req, res) => {
@@ -36,9 +37,11 @@ router.post('/register', async (req, res) => {
 });
 //SIGN IN
 
-router.post("/signin", async (req, res) => {
+router.post('/signin', async (req, res) => {
   try {
+   // console.log("Hello at 44")
     const user = await User.findOne({ email: req.body.email });
+    //console.log("Hello at 44")
     if (!user) {
       return res
         .status(400)
